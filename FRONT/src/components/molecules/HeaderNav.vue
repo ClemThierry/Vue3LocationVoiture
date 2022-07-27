@@ -11,7 +11,7 @@
                         <div class="ml-10 flex items-baseline space-x-4">
                             <LinkNav text="Home"/>
                             <LinkNav text="Rent a car" link="/about"/>
-                            <LinkNav text="Contact"/>
+                            <LinkNav text="Contact" link="/contact"/>
                         </div>
                     </div>
                 </div>
@@ -68,18 +68,9 @@
         </div>
         <div class="md:hidden" id="mobileNav">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Home
-                </a>
-                <a class="text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Gallery
-                </a>
-                <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Content
-                </a>
-                <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Contact
-                </a>
+                            <LinkNav text="Home"/>
+                            <LinkNav text="Rent a car" link="/about"/>
+                            <LinkNav text="Contact" link="/contact"/>
             </div>
         </div>
     </nav>
@@ -101,8 +92,3 @@ export default {
   }
 }
 </script>
-  
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>

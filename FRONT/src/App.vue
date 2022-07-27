@@ -1,24 +1,22 @@
 <template>
-  <div id="nav">
+  <div id="app">
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
     <HeaderNav/>
+    <router-view/>
+    <Footer/>
   </div>
-  <router-view/>
 </template>
 
 <script>
 import HeaderNav from './components/molecules/HeaderNav.vue'
+import Footer from './components/orgamisms/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    HeaderNav
-  },
-  methods:{
-    showMenu : function (id) {
-        document.querySelector(id).classList.toggle("hidden");
-    }
+    HeaderNav,
+    Footer
   }
 }
 </script>
@@ -35,9 +33,5 @@ export default {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
