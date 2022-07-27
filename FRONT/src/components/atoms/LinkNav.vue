@@ -1,8 +1,9 @@
 <template>
 <div>
-    <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium text-sm" v-bind:href="link">
+    <router-link class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium text-sm" v-bind:to="link">{{text}}</router-link>
+    <!-- <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium text-sm" v-bind:href="link">
         {{text}}
-    </a>
+    </a> -->
                     <!-- <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium text-base block " href="/#">
                     Contact
                 </a> -->
@@ -15,7 +16,7 @@ export default {
     props: {
         text: String,
         link: {
-            default: "#",
+            default: "/",
             type: String
         }
 }

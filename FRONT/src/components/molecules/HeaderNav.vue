@@ -10,7 +10,7 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <LinkNav text="Home"/>
-                            <LinkNav text="Rent a car"/>
+                            <LinkNav text="Rent a car" link="/about"/>
                             <LinkNav text="Contact"/>
                         </div>
                     </div>
