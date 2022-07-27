@@ -1,7 +1,7 @@
 <template>
 <div>
     
-<footer class="bg-soft-green text-dark-blue dark:bg-gray-800 w-full py-8">
+<footer class="bg-soft-green text-dark-blue dark:bg-gray-800 w-full py-8 shadow">
     <SocialMedia/>
     <FooterMenu/>
     <div class="text-center text-dar-blue dark:text-gray-200 pt-10 sm:pt-12 font-light flex items-center justify-center">
