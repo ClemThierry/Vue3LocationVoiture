@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "centres",
+  "info": {
+    "singularName": "centre",
+    "pluralName": "centres",
+    "displayName": "Centre"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "cars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car.car",
+      "mappedBy": "Centre"
+    }
+  }
+}

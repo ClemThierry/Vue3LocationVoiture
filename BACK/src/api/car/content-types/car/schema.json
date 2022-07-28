@@ -49,6 +49,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "Centre": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::centre.centre",
+      "inversedBy": "cars"
     }
   }
 }

@@ -41,7 +41,15 @@ export default {
   },
   async mounted () {
     try {
-      const response = await fetch("http://localhost:1337/api/cars", {
+      const qs = require('qs')
+        const query = qs.stringify({
+            filters : {
+                brand:{
+                    $eq:'Mercedes-Benz',
+                }
+            }
+        })
+      const response = await fetch("http://localhost:1337/api/cars?" + query, {
         method: 'GET',
         headers: this.headers,
       }).then(this.checkStatus)
