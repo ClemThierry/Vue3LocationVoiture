@@ -1,27 +1,33 @@
 <template>
+  <div id="app">
+    <HeaderNav/>
+    <router-view/>
 
+    <LocationForm  v-on:SendCarsListResultFromForm="DisplayCarsListResult"/>
+    <ul v-if="cars != {}" class="display-result">
+        <li class="text-pink-500" v-for="car in cars" :key="car.id">
+          <img :src="car.attributes.Picture.data.attributes.caption" alt="">
+          <span>{{ car.attributes.Brand }} {{ car.attributes.Model }}</span>
+        </li>
+    </ul>
+    <span v-else>
+      No Result
+    </span>
 
-  <LocationForm  v-on:SendCarsListResultFromForm="DisplayCarsListResult"/>
-  <ul v-if="cars != {}" class="display-result">
-      <li class="text-pink-500" v-for="car in cars" :key="car.id">
-        <img :src="car.attributes.Picture.data.attributes.caption" alt="">
-        <span>{{ car.attributes.Brand }} {{ car.attributes.Model }}</span>
-      </li>
-  </ul>
-  <span v-else>
-    No Result
-  </span>
-
-  
+    <Footer/>
+  </div>  
 </template>
 
 <script>
-
+import HeaderNav from './components/molecules/HeaderNav.vue'
+import Footer from './components/orgamisms/Footer.vue'
 import LocationForm from './components/Form/LocationForm.vue'
 export default {
   name: 'App',
   components: {
     LocationForm,
+    HeaderNav,
+    Footer
   },
   data () {
     return {
@@ -33,6 +39,7 @@ export default {
       this.cars = cars
       console.log(this.cars)
     }
+    
   }
 }
 </script>
@@ -73,5 +80,10 @@ export default {
   display:flex;
   align-items: center;
   justify-content: center;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 </style>
