@@ -7,7 +7,6 @@
         </label>
         <FormField  type="radio" classes="form-input" :value="category.attributes.name" v-model:selection="selectedProp" />
     </li>
-    {{selectedProp}}
   </ul>
     
   <!-- <input :type="type" autocomplete="off" :class="classes" data-testid="google-map-input" :name="name" :placeholder="placeholder" value=""> -->

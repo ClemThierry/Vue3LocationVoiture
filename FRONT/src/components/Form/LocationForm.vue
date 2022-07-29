@@ -8,8 +8,8 @@
     <!-- <FormField placeholder="Fin de location" type="date" name="end_date" v-model="end_date" classes="form-input w-40" /> -->
     <!-- <FormField placeholder="Km" type="number" name="distance" v-model="distance" classes="form-input w-24" /> -->
     <SubmitButton v-if="IsCategoryChosen" action="Rechercher" v-on:CarsListResult="SendCarsListResult" :data="[selectedProp, nb_places_selected, category]"/>
-    {{selectedProp.centre}}
-    {{nb_places_selected.places}}
+    <!-- {{selectedProp.centre}}
+    {{nb_places_selected.places}} -->
   </div>
 </template>
 

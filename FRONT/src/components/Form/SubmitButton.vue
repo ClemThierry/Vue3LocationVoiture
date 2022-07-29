@@ -36,7 +36,7 @@ export default {
         throw resp;
       });
     },
-    DeleteCentreNullFromCarsList : function(carsList, filters){
+    DeletePopulateNullFromCarsList : function(carsList, filters){
       console.log(filters)
       filters.forEach(function callback(filter, key){
         carsList.forEach(function callback(car, index){
@@ -91,7 +91,7 @@ export default {
                 .then(this.parseJSON);
 
             this.cars = response.data
-            this.DeleteCentreNullFromCarsList(this.cars, this.filtersFromPopulate)
+            this.DeletePopulateNullFromCarsList(this.cars, this.filtersFromPopulate)
             console.log(this.cars)
             this.$emit("CarsListResult", this.cars)
             this.formData = null

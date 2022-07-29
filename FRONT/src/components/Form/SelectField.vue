@@ -3,7 +3,6 @@
   <option selected value="">{{placeholder}}</option>
   <option v-for="centre in centres" :key="centre.id" :value="centre.attributes.name">{{centre.attributes.name}}</option>
 </select>
-{{selectedProp}}
 </template>
 
 <script>
