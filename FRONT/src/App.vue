@@ -1,19 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="page">
     <HeaderNav/>
     <router-view/>
-
-    <LocationForm  v-on:SendCarsListResultFromForm="DisplayCarsListResult"/>
-    <ul v-if="cars != {}" class="display-result">
-        <li class="text-pink-500" v-for="car in cars" :key="car.id">
-          <img :src="car.attributes.Picture.data.attributes.caption" alt="">
-          <span>{{ car.attributes.Brand }} {{ car.attributes.Model }}</span>
-        </li>
-    </ul>
-    <span v-else>
-      No Result
-    </span>
-
     <Footer/>
   </div>  
 </template>
@@ -21,11 +9,10 @@
 <script>
 import HeaderNav from './components/molecules/HeaderNav.vue'
 import Footer from './components/orgamisms/Footer.vue'
-import LocationForm from './components/Form/LocationForm.vue'
 export default {
   name: 'App',
   components: {
-    LocationForm,
+
     HeaderNav,
     Footer
   },
@@ -51,12 +38,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  display:flex;
-  flex-direction: column;
-  align-items:center;
+  height:100vh;
 }
 
+.page{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .display-result{
   display:flex;
   justify-content:center;

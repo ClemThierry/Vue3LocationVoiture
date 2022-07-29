@@ -55,6 +55,12 @@
       "relation": "manyToOne",
       "target": "api::centre.centre",
       "inversedBy": "cars"
+    },
+    "Seat": {
+      "type": "integer",
+      "required": true,
+      "max": 15,
+      "min": 2
     }
   }
 }

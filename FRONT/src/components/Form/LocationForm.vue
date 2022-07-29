@@ -1,17 +1,19 @@
 <template>
   <div class="form">
-    <SelectField placeholder="Choose a centre" name="centre" id="centre" v-model:selection="selectedProp" />
-    
-    <FormField placeholder="Début de location" type="date" name="start_date" v-model="start_date" classes="form-input w-40" />
-    <FormField placeholder="Fin de location" type="date" name="end_date" v-model="end_date" classes="form-input w-40" />
-    <FormField placeholder="Km" type="number" name="distance" v-model="distance" classes="form-input w-24" />
-    <SubmitButton action="Rechercher" v-on:CarsListResult="SendCarsListResult" :data="selectedProp"/>
-    {{selectedProp}}
+    <SelectField placeholder="Choose a centre" name="centre" id="centre" v-model:selection="selectedProp.centre" />
+    <SelectField placeholder="Nb de places" name="places" id="places" v-model:selection="nb_places_selected.places" />
+   
+    <!-- <FormField placeholder="Début de location" type="date" name="start_date" v-model="start_date" classes="form-input w-40" /> -->
+    <!-- <FormField placeholder="Fin de location" type="date" name="end_date" v-model="end_date" classes="form-input w-40" /> -->
+    <!-- <FormField placeholder="Km" type="number" name="distance" v-model="distance" classes="form-input w-24" /> -->
+    <SubmitButton action="Rechercher" v-on:CarsListResult="SendCarsListResult" :data="[selectedProp, nb_places_selected]"/>
+    {{selectedProp.centre}}
+    {{nb_places_selected.places}}
   </div>
 </template>
 
 <script>
-import FormField from './FormField.vue'
+// import FormField from './FormField.vue'
 import SelectField from './SelectField.vue'
 import SubmitButton from './SubmitButton.vue'
 export default {
@@ -20,7 +22,7 @@ export default {
     msg: String
   },
   components: {
-    FormField,
+    // FormField,
     SubmitButton,
     SelectField,
   },
@@ -33,7 +35,8 @@ export default {
       start_date: "",
       end_date: "",
       distance: 0,
-      selectedProp:"",
+      selectedProp:{"centre": ""},
+      nb_places_selected:{"places":"0"},
     }
   },
   methods: {
@@ -54,27 +57,6 @@ export default {
         this.$emit("SendCarsListResultFromForm", carsList)
     }
   },
-  async mounted () {
-    try {
-      const qs = require('qs')
-        const query = qs.stringify({
-            filters : {
-                brand:{
-                    $eq:'Mercedes-Benz',
-                }
-            }
-        })
-      const response = await fetch("http://localhost:1337/api/cars?" + query, {
-        method: 'GET',
-        headers: this.headers,
-      }).then(this.checkStatus)
-        .then(this.parseJSON);
-      this.cars = response.data
-      console.log(response.data)
-    } catch (error) {
-      this.error = error
-    }
-  }
 }
 </script>
   
