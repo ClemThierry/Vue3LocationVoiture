@@ -15,6 +15,7 @@ export default {
       cars: [],
       error: null,
       headers: {'Content-Type': 'application/json'},
+      filtersFromPopulate:['Centre', 'category']
     }
   },
   setup(props, {emit}){
@@ -35,12 +36,18 @@ export default {
         throw resp;
       });
     },
-    DeleteCentreNullFromCarsList : function(carsList){
-      carsList.forEach(function callback(car, index){
-        if(car.attributes.Centre.data == null ){
-          carsList.splice(index,1)
-        }
+    DeleteCentreNullFromCarsList : function(carsList, filters){
+      console.log(filters)
+      filters.forEach(function callback(filter, key){
+        carsList.forEach(function callback(car, index){
+          console.log(key, " : ", car.attributes[filter].data)
+          if(car.attributes[filter].data == null ){
+            carsList.splice(index,1)
+          }
+        })
       })
+      
+      console.log(carsList)
     },
     getCarsFromAPI : async function(){
         try {
@@ -59,6 +66,13 @@ export default {
                       },
                       Picture : {
                         fields: ['caption']
+                      },
+                      category : {
+                        filters:{
+                          name:{
+                            $eq: this.formData[2].category
+                          }
+                        }
                       }
                   },
                 filters : {
@@ -77,7 +91,7 @@ export default {
                 .then(this.parseJSON);
 
             this.cars = response.data
-            this.DeleteCentreNullFromCarsList(this.cars)
+            this.DeleteCentreNullFromCarsList(this.cars, this.filtersFromPopulate)
             console.log(this.cars)
             this.$emit("CarsListResult", this.cars)
             this.formData = null

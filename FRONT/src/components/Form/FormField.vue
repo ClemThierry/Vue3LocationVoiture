@@ -1,18 +1,25 @@
 <template>
-<input :type="type" autocomplete="off" :class="classes" data-testid="google-map-input" :name="name" :placeholder="placeholder" value="">
+<input :type="type" autocomplete="off" :class="classes" v-model="selected" :value="value" :placeholder="placeholder">
 </template>
 
 <script>
+import {useModelWrapper} from './modelWrapper.js'
 export default {
   name: 'FormField',
   props: {
     placeholder: String,
     type: String,
-    name: String,
+    value: String,
     classes: String,
+    selection:String,
   },
   data () {
     return {
+    }
+  },
+  setup(props, {emit}){
+    return{
+      selected: useModelWrapper(props, emit, 'selection')
     }
   },
   methods: {

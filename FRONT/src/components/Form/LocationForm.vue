@@ -1,19 +1,20 @@
 <template>
   <div class="form">
-    <SelectField placeholder="Choose a centre" name="centre" id="centre" v-model:selection="selectedProp.centre" />
-    <SelectField placeholder="Nb de places" name="places" id="places" v-model:selection="nb_places_selected.places" />
+    <ImageRadioField v-if="!IsCategoryChosen" placeholder="Choose a type of transport" v-on:SendRadioInputChoice="ChangeDisplayOfForm" />
+    <SelectField v-if="IsCategoryChosen" placeholder="Choose a centre" name="centre" id="centre" v-model:selection="selectedProp.centre" />
+    <SelectField v-if="IsCategoryChosen" placeholder="Nb de places" name="places" id="places" v-model:selection="nb_places_selected.places" />
    
     <!-- <FormField placeholder="Début de location" type="date" name="start_date" v-model="start_date" classes="form-input w-40" /> -->
     <!-- <FormField placeholder="Fin de location" type="date" name="end_date" v-model="end_date" classes="form-input w-40" /> -->
     <!-- <FormField placeholder="Km" type="number" name="distance" v-model="distance" classes="form-input w-24" /> -->
-    <SubmitButton action="Rechercher" v-on:CarsListResult="SendCarsListResult" :data="[selectedProp, nb_places_selected]"/>
+    <SubmitButton v-if="IsCategoryChosen" action="Rechercher" v-on:CarsListResult="SendCarsListResult" :data="[selectedProp, nb_places_selected, category]"/>
     {{selectedProp.centre}}
     {{nb_places_selected.places}}
   </div>
 </template>
 
 <script>
-// import FormField from './FormField.vue'
+import ImageRadioField from './ImageRadioField.vue'
 import SelectField from './SelectField.vue'
 import SubmitButton from './SubmitButton.vue'
 export default {
@@ -25,9 +26,11 @@ export default {
     // FormField,
     SubmitButton,
     SelectField,
+    ImageRadioField,
   },
   data () {
     return {
+      IsCategoryChosen : false,
       cars: [],
       error: null,
       headers: {'Content-Type': 'application/json'},
@@ -37,6 +40,7 @@ export default {
       distance: 0,
       selectedProp:{"centre": ""},
       nb_places_selected:{"places":"0"},
+      category: {"category":""}
     }
   },
   methods: {
@@ -55,6 +59,10 @@ export default {
     SendCarsListResult: function(carsList){
         console.log(carsList)
         this.$emit("SendCarsListResultFromForm", carsList)
+    },
+    ChangeDisplayOfForm: function(radioInputChoice){
+      this.IsCategoryChosen = true
+      this.category.category = radioInputChoice
     }
   },
 }

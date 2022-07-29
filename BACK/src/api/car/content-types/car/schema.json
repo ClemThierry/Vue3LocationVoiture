@@ -61,6 +61,12 @@
       "required": true,
       "max": 15,
       "min": 2
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "cars"
     }
   }
 }
